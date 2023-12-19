@@ -8,6 +8,6 @@ const mainRouter = express.Router();
 
 mainRouter.use("/auth", AuthRouter);
 mainRouter.use("/skills", checkAuth, SkillRouter);
-mainRouter.use("/images", ImagesRouter);
+mainRouter.use("/images", checkAuth, ImagesRouter);
 
 export { mainRouter };
