@@ -1,6 +1,6 @@
 import express from "express";
-import { healthRouter, calculatorRouter } from "./routes";
-import { addTimestamp, errorHandler, logger } from "./middlewares";
+import { healthRouter, calculatorRouter } from "./src/routes";
+import { addTimestamp, errorHandler, logger } from "./src/middlewares";
 const app = express();
 const port = 3000;
 
@@ -9,7 +9,7 @@ app.use(addTimestamp);
 app.use(logger);
 
 app.get("/", (req, res) => {
-  res.send("<h1>Commit</h1>");
+  res.send("<h1>Commist</h1>");
 });
 app.use("/health", healthRouter);
 
