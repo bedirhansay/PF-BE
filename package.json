@@ -1,7 +1,7 @@
 {
-  "name": "calculator",
+  "name": "be",
   "version": "1.0.0",
-  "description": "A very simple calculator API",
+  "description": "api",
   "main": "dist/index.js",
   "scripts": {
     "dev": "tsc -w & nodemon dist/index.js",
@@ -9,7 +9,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "Nerdi Coda",
+  "author": "bedirhan say",
   "license": "MIT",
   "dependencies": {
     "bcryptjs": "^2.4.3",
