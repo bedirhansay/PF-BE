@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "target": "es2018",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "baseUrl": "src",
+    "outDir": "./dist",
+    "sourceMap": true,
+    "strict": false,
+    "esModuleInterop": true,
+    "noImplicitAny": false,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "paths": {
+      "@routes": ["routes/index.ts"],
+      "@controller": ["controller/index.ts"],
+      "@helpers": ["helpers/index.ts"],
+      "@models": ["models/index.ts"],
+      "@middleware": ["middleware/index.ts"],
+      "@config": ["config/index.ts"],
+      "@types": ["types/index.ts"]
+    }
+  },
+  "include": [
+    "./api/**/*.ts",
+    "src/**/*.ts",
+    "/api/index.ts",
+    "api/index.ts",
+    "index.ts"
+  ],
+  "exclude": ["node_modules"]
+}
