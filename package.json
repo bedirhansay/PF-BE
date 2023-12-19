@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "A very simple calculator API",
   "main": "dist/app.js",
+  "type": "module",
   "scripts": {
     "dev": "tsc -w & nodemon dist/app.js",
     "dev:win": "start /b tsc -w & nodemon dist/app.js",
