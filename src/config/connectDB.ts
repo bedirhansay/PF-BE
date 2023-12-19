@@ -5,11 +5,9 @@ import mongoose from "mongoose";
 
 dotenv.config();
 
-export const connectDB = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+import { RequestHandler } from "express";
+
+export const connectDB: RequestHandler = async (req, res, next) => {
   if (!process.env.MONGO_URL) {
     console.error("Missing MongoDB URL in .env file");
     return;
