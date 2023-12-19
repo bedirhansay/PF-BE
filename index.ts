@@ -14,7 +14,7 @@ app.use("/api", (req, res) => {
 });
 
 app.get("/", (req, res) => {
-  res.send("Bedirhansayapi");
+  res.send("<h1>Bedirhan SAY / Endpoint</h1>");
 });
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
