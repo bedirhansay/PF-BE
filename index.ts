@@ -14,7 +14,7 @@ app.use(logger);
 app.get("/", (req, res) => {
   res.send("<h1>Commist</h1>");
 });
-app.use("/health", healthRouter);
+app.use("/health", connectDB, healthRouter);
 
 app.use("/calculator", calculatorRouter);
 

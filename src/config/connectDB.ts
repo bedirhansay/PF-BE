@@ -1,26 +1,20 @@
 // connectDB.ts
 import dotenv from "dotenv";
+import { NextFunction } from "express";
 import mongoose from "mongoose";
 
 dotenv.config();
 
-let isConnected = false;
-
-export const connectDB = async () => {
+export const connectDB = async (req, res, next: NextFunction) => {
   if (!process.env.MONGO_URL) {
     console.error("Missing MongoDB URL in .env file");
     return;
   }
 
-  if (isConnected) {
-    console.info("MongoDB connection already established");
-    return;
-  }
-
   try {
     await mongoose.connect(process.env.MONGO_URL);
-    isConnected = true;
     console.log("Database Connected");
+    next();
   } catch (error: any) {
     console.error(`Error: ${error.message}`);
     process.exit(1);
