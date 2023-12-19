@@ -26,7 +26,7 @@
     "src/**/*.ts",
     "/api/index.ts",
     "api/index.ts",
-    "index.ts"
+    "index.js"
   ],
   "exclude": ["node_modules"]
 }
