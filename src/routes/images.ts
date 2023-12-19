@@ -1,11 +1,11 @@
+
 import express from "express";
 import multer from "multer";
-
-import { getSkills } from "../controller/deneme";
+import { uploadImage } from "../controller";
 
 const upload = multer({ dest: "uploads/" });
 const ImagesRouter = express.Router();
 
-ImagesRouter.post("/", upload.single("image"), getSkills);
+ImagesRouter.post("/", upload.single("image"), uploadImage);
 
 export { ImagesRouter };
