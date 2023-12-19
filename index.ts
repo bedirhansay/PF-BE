@@ -1,24 +1,31 @@
 import express from "express";
+import cors from "cors";
 import dotenv from "dotenv";
-import { healthRouter, calculatorRouter } from "./src/routes";
-import { addTimestamp, errorHandler, logger } from "./src/middlewares";
+import { mainRouter } from "./src/routes";
+import { CustomErrorHandler } from "./src/middleware";
 import { connectDB } from "./src/config/connectDB";
 
+dotenv.config();
 const app = express();
 
-dotenv.config();
+// Middleware
+const corsConfig = {
+  origin: "",
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
+};
+app.use(cors(corsConfig));
+app.options("", cors(corsConfig));
 app.use(express.json());
-app.use(addTimestamp);
-app.use(logger);
+
+// Routes
+app.use("/api", mainRouter);
 
 app.get("/", (req, res) => {
-  res.send("<h1>Commist</h1>");
+  res.send("Bedirhansayapi");
 });
-app.use("/health", healthRouter);
 
-app.use("/calculator", calculatorRouter);
-
-app.use(errorHandler);
+app.use(CustomErrorHandler);
 
 connectDB()
   .then(() => {

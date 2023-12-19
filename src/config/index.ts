@@ -1,1 +1,2 @@
-export * from "./connectDB";
+export * from "../config/connectDB";
+export * from "./firebaseConfig";
