@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "es2018",
-    "module": "commonjs",
+    "module": "ESNext",
     "moduleResolution": "node",
     "baseUrl": "src",
     "outDir": "./dist",
@@ -26,7 +26,7 @@
     "src/**/*.ts",
     "/api/index.ts",
     "api/index.ts",
-    "index.js"
+    "index.ts"
   ],
   "exclude": ["node_modules"]
 }
