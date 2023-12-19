@@ -5,7 +5,3 @@ declare module "express" {
     timestamp?: number;
   }
 }
-
-declare module "mongodb" {
-  export { ObjectId } from "mongodb";
-}
