@@ -8,7 +8,7 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-app.use(express.urlencoded({ extended: true })); // express.json() yerine express.urlencoded() kullanılmalı
+app.use(express.urlencoded({ extended: true }));
 
 // Routes
 app.get("/", (req, res) => {
@@ -23,4 +23,4 @@ app.listen(PORT, () => {
   console.log(`[-- * Server is running on port * --] ${PORT}`);
 });
 
-export default app;
+module.exports = app;
