@@ -5,7 +5,7 @@ import { addTimestamp, errorHandler, logger } from "./src/middlewares";
 import { connectDB } from "./src/config/connectDB";
 
 const app = express();
-connectDB();
+
 dotenv.config();
 app.use(express.json());
 app.use(addTimestamp);
