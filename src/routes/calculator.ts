@@ -9,6 +9,7 @@ router.get("/", async (req: Request, res) => {
   const h = await connectDB();
   if (h === "Database Connected") {
     res.send({
+      connection: "Connectted",
       message: "Get all calculations",
       timestamp: req.timestamp,
       data: [
