@@ -1,6 +1,6 @@
 import express from "express";
-import { healthRouter, calculatorRouter } from "./routes";
-import { addTimestamp, errorHandler, logger } from "./middlewares";
+import { healthRouter, calculatorRouter } from "./src/routes";
+import { addTimestamp, errorHandler, logger } from "./src/middlewares";
 const app = express();
 const port = 3000;
 
