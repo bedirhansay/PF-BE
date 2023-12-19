@@ -5,7 +5,7 @@ import { addTimestamp, errorHandler, logger } from "./src/middlewares";
 import { connectDB } from "./src/config/connectDB";
 
 const app = express();
-
+connectDB();
 dotenv.config();
 app.use(express.json());
 app.use(addTimestamp);
@@ -20,15 +20,9 @@ app.use("/calculator", calculatorRouter);
 
 app.use(errorHandler);
 
-connectDB()
-  .then(() => {
-    const PORT = process.env.PORT || 3000;
-    app.listen(PORT, () => {
-      console.log(`[-- * Server is running on port * --] ${PORT}`);
-    });
-  })
-  .catch((err) => {
-    console.error("----[Database connection error----]:", err);
-  });
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`[-- * Server is running on port * --] ${PORT}`);
+});
 
 export default app;
