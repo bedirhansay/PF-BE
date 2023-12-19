@@ -5,12 +5,7 @@ import {
   verifyPassword,
   verifyToken,
 } from "../helpers";
-import {
-  createUser,
-  getUserByEmail,
-  getUserById,
-  userValidation,
-} from "../models";
+import { createUser, getUserByEmail, userValidation } from "../models";
 import { IUser } from "../types";
 import { NextFunction, Request, Response } from "express";
 
