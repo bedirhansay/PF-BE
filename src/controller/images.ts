@@ -14,12 +14,10 @@ export const uploadImage = async (
   try {
     const fileData = req.file;
     console.log(req.file);
-    const { id, field } = req.body;
+    const { field } = req.body;
 
     if (!fileData) {
-      return res.status(400).json({
-        error: "Dosya bulunamadı.",
-      });
+      return res.status(400).json("Dosya bulunamadı.");
     }
 
     const filesData: FilesData = {
@@ -31,18 +29,13 @@ export const uploadImage = async (
     const url = await uploadImageToFirabase(filesData);
 
     if (url) {
-      return res.status(200).json({
-        status: 201,
+      return res.status(201).json({
         url: url.url,
-        message: "Dosya başarıyla yüklendi",
       });
     } else {
-      return res.status(400).json({
-        status: 201,
-        message: "Dosya yüklenemedi",
-      });
+      return res.status(400).json("Dosya yüklenemedi");
     }
   } catch (error) {
-    return res.status(500).json({ message: "Hata: " + error });
+    return res.status(500).json(error);
   }
 };

@@ -16,11 +16,10 @@ export const getSkills = async (
   try {
     const allSkills = await GetAllSkills();
     if (allSkills) {
-      return res.status(200).json({ status: 200, data: allSkills });
+      return res.status(200).json(allSkills);
     }
   } catch (error: any) {
-    console.error("Hata:", error);
-    return res.status(500).json({ status: 500, error: "Bir hata oluştu." });
+    return res.status(500).json(error);
   }
 };
 
@@ -35,12 +34,12 @@ export const getSingleSkill = async (
     const skill = await GetSkillById(skillId);
 
     if (!skill) {
-      return res.status(404).json({ status: 404, message: "Skill not found" });
+      return res.status(404).json("Skill not found");
     } else {
-      return res.status(200).json({ status: 200, message: skill });
+      return res.status(200).json(skill);
     }
   } catch (error: any) {
-    return res.status(500).json({ status: 500, error: error.message });
+    return res.status(500).json(error);
   }
 };
 
@@ -54,17 +53,13 @@ export const createSkill = async (
     const validationResult = SkillValidation(postData);
 
     if (validationResult.error) {
-      return res.status(400).json({
-        status: 400,
-        error: validationResult.error.details[0].message,
-      });
+      return res.status(400).json(validationResult.error.details[0].message);
     }
 
     const result = await SkillModel.create(postData);
-    return res.status(201).json({ status: 201, message: "Skill oluşturuldu." });
+    return res.status(201).json("Skill oluşturuldu.");
   } catch (error: any) {
-    console.error("Hata:", error);
-    return res.status(500).json({ status: 500, error: error.message });
+    return res.status(500).json(error.message);
   }
 };
 
@@ -79,10 +74,9 @@ export const updateSkill = async (
     const id = patchData._id;
     const data = await UpdateSkill(id, patchData);
 
-    return res.status(200).json({ status: 200, message: "Skill updated" });
-  } catch (err: any) {
-    console.error("Hata:", err);
-    return res.status(500).json({ status: 500, error: err.message });
+    return res.status(200).json(data);
+  } catch (error: any) {
+    return res.status(500).json(error.message);
   }
 };
 
@@ -97,13 +91,11 @@ export const deleteSkill = async (
     const existingSkill = await GetSkillById(id);
 
     if (!existingSkill) {
-      return res.status(404).json({ status: 404, message: "Id bulunamadı." });
+      return res.status(404).json("Id bulunamadı.");
     }
-
     const data = await DeleteSkill(id);
-    return res.status(200).json({ status: 200, data: data });
+    return res.status(200).json(data);
   } catch (error: any) {
-    console.error("Hata:", error);
-    return res.status(500).json({ status: 500, error: error.message });
+    return res.status(500).json(error.message);
   }
 };
