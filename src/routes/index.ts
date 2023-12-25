@@ -15,9 +15,9 @@ mainRouter.use("/auth", AuthRouter);
 mainRouter.use("/skills", checkAuth, SkillRouter);
 mainRouter.use("/images", checkAuth, ImagesRouter);
 mainRouter.use("/about", checkAuth, AboutRouter);
-mainRouter.use("/projects", ProjectsRouter);
-mainRouter.use("/blog", BlogRouter);
-mainRouter.use("/experience", ExperienceRouter);
-mainRouter.use("/categories", CategoriesRouter);
+mainRouter.use("/projects", checkAuth, ProjectsRouter);
+mainRouter.use("/blog", checkAuth, BlogRouter);
+mainRouter.use("/experience", checkAuth, ExperienceRouter);
+mainRouter.use("/categories", checkAuth, CategoriesRouter);
 
 export { mainRouter };
