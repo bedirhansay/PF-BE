@@ -3,15 +3,14 @@ import {
   createProject,
   deleteProject,
   getProjects,
-  getSingleProject,
+  getProjectById,
   updateProject,
 } from "../controller";
-import { checkAuth } from "../middleware";
 
 const ProjectsRouter = express.Router();
 
 ProjectsRouter.get("/", getProjects);
-ProjectsRouter.get("/:id", getSingleProject);
+ProjectsRouter.get("/:id", getProjectById);
 ProjectsRouter.post("/", createProject);
 ProjectsRouter.patch("/", updateProject);
 ProjectsRouter.delete("/:id", deleteProject);

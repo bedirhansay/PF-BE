@@ -1,6 +1,11 @@
-
 import express from "express";
-import { createSkill,getSkills, updateSkill, deleteSkill,getSingleSkill, } from "../controller";
+import {
+  createSkill,
+  getSkills,
+  updateSkill,
+  deleteSkill,
+  getSingleSkill,
+} from "../controller";
 
 const SkillRouter = express.Router();
 

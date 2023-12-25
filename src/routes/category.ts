@@ -6,7 +6,6 @@ import {
   getCategories,
   updateCategory,
 } from "../controller";
-import { checkAuth } from "../middleware";
 
 const CategoriesRouter = express.Router();
 

@@ -25,7 +25,7 @@ export const getProjects = async (
   }
 };
 
-export const getSingleProject = async (
+export const getProjectById = async (
   req: Request,
   res: Response,
   next: NextFunction

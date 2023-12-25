@@ -1,5 +1,4 @@
 import express from "express";
-import { checkAuth } from "../middleware";
 import {
   createBlog,
   deleteBlog,
