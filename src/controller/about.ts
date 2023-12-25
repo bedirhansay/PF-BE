@@ -41,7 +41,7 @@ export const updateAbout = async (
     const patchData = req.body;
     const id = patchData._id;
     const data = await UpdateAbout(id, patchData);
-
+    
     return res.status(200).json(data);
   } catch (error: any) {
     return res.status(500).json(error.message);

@@ -17,7 +17,7 @@ export const register = async (
   try {
     const { error } = userValidation(req.body);
     if (error) {
-      console.log(error.details);
+
       return res.status(400).json(error.details[0].message);
     }
 

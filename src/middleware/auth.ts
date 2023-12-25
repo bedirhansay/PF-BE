@@ -7,7 +7,6 @@ dotenv.config();
 export const checkAuth = (req: Request, res: Response, next: NextFunction) => {
   const { JWT_SECRET } = process.env;
 
-  console.log(JWT_SECRET);
 
   if (!JWT_SECRET) {
     return res.status(500).json({

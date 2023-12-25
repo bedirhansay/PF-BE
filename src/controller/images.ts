@@ -13,7 +13,7 @@ export const uploadImage = async (
 ) => {
   try {
     const fileData = req.file;
-    console.log(req.file);
+
     const { field } = req.body;
 
     if (!fileData) {
