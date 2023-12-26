@@ -8,7 +8,7 @@ const ProjectSchema = new mongoose.Schema(
     projectName: { type: String },
     time: { type: Number },
     area: { type: String },
-    url: { type: String },
+    image: { type: String },
     tags: { type: [String] },
     description: { type: String },
     goals: { type: [String] },
@@ -40,7 +40,7 @@ export const ProjectValidation = (project: ProjectDTO) => {
   const projectValidationSchema = Joi.object({
     company: Joi.string().required(),
     projectName: Joi.string().required(),
-    url: Joi.string(),
+    image: Joi.string(),
     time: Joi.number().required(),
     area: Joi.string().required(),
     tags: Joi.array().items(Joi.string()),

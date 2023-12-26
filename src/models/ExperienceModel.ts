@@ -8,7 +8,7 @@ export const ExperienceSchema = new mongoose.Schema(
     location: String,
     position: String,
     description: String,
-    url: String,
+    image: String,
     date: String,
     skills: [String],
   },
@@ -16,7 +16,8 @@ export const ExperienceSchema = new mongoose.Schema(
 );
 
 export const ExperienceModel =
-  mongoose.models.Experiences || mongoose.model("Experiences", ExperienceSchema);
+  mongoose.models.Experiences ||
+  mongoose.model("Experiences", ExperienceSchema);
 
 export const GetAllExperiences = () => ExperienceModel.find();
 
@@ -38,7 +39,7 @@ export const ExperienceValidation = (experience: ExperienceDTO) => {
     location: Joi.string().required(),
     position: Joi.string().required(),
     description: Joi.string().required(),
-    url: Joi.string(),
+    image: Joi.string(),
     date: Joi.string().required(),
     skills: Joi.array().items(Joi.string()),
   });
