@@ -12,7 +12,7 @@ const SkillRouter = express.Router();
 SkillRouter.get("/", getSkills);
 SkillRouter.get("/:id", getSingleSkill);
 SkillRouter.post("/", createSkill);
-SkillRouter.patch("/", updateSkill);
-SkillRouter.delete("/", deleteSkill);
+SkillRouter.patch("/:id", updateSkill);
+SkillRouter.delete("/:id", deleteSkill);
 
 export { SkillRouter };

@@ -12,7 +12,7 @@ import { CategoriesRouter } from "./category";
 const mainRouter = express.Router();
 
 mainRouter.use("/auth", AuthRouter);
-mainRouter.use("/skills", checkAuth, SkillRouter);
+mainRouter.use("/skills", SkillRouter);
 mainRouter.use("/images", checkAuth, ImagesRouter);
 mainRouter.use("/about", checkAuth, AboutRouter);
 mainRouter.use("/projects", checkAuth, ProjectsRouter);

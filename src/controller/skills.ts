@@ -69,9 +69,10 @@ export const updateSkill = async (
   next: NextFunction
 ) => {
   try {
+    const id = req.params.id;
+
     const patchData = req.body;
 
-    const id = patchData._id;
     const data = await UpdateSkill(id, patchData);
 
     return res.status(200).json(data);
@@ -86,8 +87,7 @@ export const deleteSkill = async (
   next: NextFunction
 ) => {
   try {
-    const del = req.body;
-    const id = del._id;
+    const id = req.params.id;
     const existingSkill = await GetSkillById(id);
 
     if (!existingSkill) {
