@@ -32,7 +32,6 @@ export const getCategoryById = async (
 ) => {
   try {
     const CategoryId = req.params.id;
-
     const Category = await GetCategoryById(CategoryId);
 
     if (!Category) {
@@ -72,9 +71,9 @@ export const updateCategory = async (
   next: NextFunction
 ) => {
   try {
+    const id = req.params.id;
     const patchData = req.body;
 
-    const id = patchData._id;
     const data = await UpdateCategory(id, patchData);
 
     return res.status(200).json(data);
@@ -90,7 +89,7 @@ export const deleteCategory = async (
 ) => {
   try {
     const id = req.params.id;
-    const existingCategory = await GetCategoryById(id);
+    const existingCategory = await DeleteCategory(id);
 
     if (!existingCategory) {
       return res.status(404).json("Id bulunamadı.");

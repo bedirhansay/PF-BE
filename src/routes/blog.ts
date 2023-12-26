@@ -12,7 +12,7 @@ const BlogRouter = express.Router();
 BlogRouter.get("/", getBlogs);
 BlogRouter.get("/:id", getBlogById);
 BlogRouter.post("/", createBlog);
-BlogRouter.patch("/", updateBlog);
-BlogRouter.delete("/", deleteBlog);
+BlogRouter.patch("/:id", updateBlog);
+BlogRouter.delete("/:id", deleteBlog);
 
 export { BlogRouter };

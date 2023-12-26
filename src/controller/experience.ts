@@ -74,7 +74,7 @@ export const updateExperience = async (
   try {
     const patchData = req.body;
 
-    const id = patchData._id;
+    const id = req.params.id;
     const data = await UpdateExperience(id, patchData);
 
     return res.status(200).json(data);
@@ -90,7 +90,7 @@ export const deleteExperience = async (
 ) => {
   try {
     const id = req.params.id;
-    const existingExperience = await GetExperienceById(id);
+    const existingExperience = await DeleteExperience(id);
 
     if (!existingExperience) {
       return res.status(404).json("Id bulunamadı.");

@@ -15,7 +15,7 @@ export const getBlogs = async (
 ) => {
   try {
     const allBlogs = await GetAllBlogs();
-   
+
     if (allBlogs) {
       return res.status(200).json(allBlogs);
     } else {
@@ -73,9 +73,9 @@ export const updateBlog = async (
   next: NextFunction
 ) => {
   try {
+    const id = req.params.id;
     const patchData = req.body;
 
-    const id = patchData._id;
     const data = await UpdateBlog(id, patchData);
 
     return res.status(200).json(data);
@@ -91,7 +91,7 @@ export const deleteBlog = async (
 ) => {
   try {
     const id = req.params.id;
-    const existingBlog = await GetBlogById(id);
+    const existingBlog = await DeleteBlog(id);
 
     if (!existingBlog) {
       return res.status(404).json("Id bulunamadı.");

@@ -72,9 +72,8 @@ export const updateProject = async (
   next: NextFunction
 ) => {
   try {
+    const id = req.params.id;
     const patchData = req.body;
-
-    const id = patchData._id;
     const data = await UpdateProject(id, patchData);
 
     return res.status(200).json(data);
@@ -90,7 +89,7 @@ export const deleteProject = async (
 ) => {
   try {
     const id = req.params.id;
-    const existingProject = await GetProjectById(id);
+    const existingProject = await DeleteProject(id);
 
     if (!existingProject) {
       return res.status(404).json("Id bulunamadı.");
