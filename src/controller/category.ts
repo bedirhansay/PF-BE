@@ -90,6 +90,8 @@ export const deleteCategory = async (
   try {
     const id = req.params.id;
     const existingCategory = await DeleteCategory(id);
+    console.log(id);
+    console.log(existingCategory);
 
     if (!existingCategory) {
       return res.status(404).json("Id bulunamadı.");

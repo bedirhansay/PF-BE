@@ -18,6 +18,6 @@ mainRouter.use("/about", checkAuth, AboutRouter);
 mainRouter.use("/projects", checkAuth, ProjectsRouter);
 mainRouter.use("/blog", checkAuth, BlogRouter);
 mainRouter.use("/experience", checkAuth, ExperienceRouter);
-mainRouter.use("/categories", checkAuth, CategoriesRouter);
+mainRouter.use("/categories", CategoriesRouter);
 
 export { mainRouter };

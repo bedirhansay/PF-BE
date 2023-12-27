@@ -1,5 +1,5 @@
-import { required } from "joi";
 import mongoose from "mongoose";
+import Joi from "joi";
 
 const CategorySchema = new mongoose.Schema(
   {
@@ -28,8 +28,6 @@ export const DeleteCategory = (id: string) =>
 
 export const UpdateCategory = (id: string, values: Record<string, any>) =>
   CategoryModel.findByIdAndUpdate(id, values);
-
-import Joi from "joi";
 
 export const CategoryValidation = (category: any) => {
   const categoryValidationSchema = Joi.object({
