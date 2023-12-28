@@ -4,9 +4,9 @@ import Joi from "joi";
 
 interface BlogDTO {
   title: string;
-  slug?: string;
   description?: string;
   image?: string;
+  slug?: string;
   viewCount?: number;
   category?: mongoose.Schema.Types.ObjectId;
 }
@@ -31,13 +31,16 @@ const BlogSchema = new mongoose.Schema<BlogDocument>(
 );
 
 BlogSchema.pre("save", function (next) {
-  if (!this.isModified("title")) {
-    return next();
-  }
-
   const title = this.get("title") as string;
+
   if (title) {
-    this.set("slug", slugify(title, { lower: true, remove: /[*+~.()'"!:@]/g }));
+    this.set(
+      "slug",
+      slugify(title, {
+        lower: true,
+        remove: /[*+~.()'"!:@?]/g,
+      })
+    );
   }
   next();
 });
@@ -58,7 +61,14 @@ export const CreateBlog = (values: Record<string, any>) =>
   new BlogModel(values).save().then((pr: any) => pr.toObject());
 
 export const UpdateBlog = (id: string, values: Record<string, any>) =>
-  BlogModel.findByIdAndUpdate(id, values);
+  BlogModel.findByIdAndUpdate(id, values, { new: true }).then((blog: any) => {
+    if (blog) {
+      const title = blog.title;
+      blog.slug = slugify(title, { lower: true, remove: /[*+~.()'"!:@?]/g });
+      return blog.save();
+    }
+    return null;
+  });
 
 export const DeleteBlog = (id: string) =>
   BlogModel.findOneAndDelete({ _id: id });
@@ -66,7 +76,6 @@ export const DeleteBlog = (id: string) =>
 export const BlogValidation = (blog: BlogDTO) => {
   const blogValidationSchema = Joi.object({
     title: Joi.string().required(),
-    slug: Joi.string(),
     description: Joi.string(),
     image: Joi.string(),
     category: Joi.string().regex(/^[0-9a-fA-F]{24}$/),
