@@ -60,8 +60,9 @@ export const createBlog = async (
     }
 
     const result = await CreateBlog(postData);
+    console.log(result);
 
-    return res.status(201).json("Blog oluşturuldu.");
+    return res.status(201).json(`succes: ${result}`);
   } catch (error: any) {
     return res.status(500).json(error.message);
   }

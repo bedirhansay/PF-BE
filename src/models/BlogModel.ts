@@ -1,9 +1,19 @@
-import Joi from "joi";
-import mongoose from "mongoose";
+import mongoose, { Document } from "mongoose";
 import slugify from "slugify";
-import { BlogDTO } from "../types";
+import Joi from "joi";
 
-export const BlogSchema = new mongoose.Schema(
+interface BlogDTO {
+  title: string;
+  slug?: string;
+  description?: string;
+  image?: string;
+  viewCount?: number;
+  category?: mongoose.Schema.Types.ObjectId;
+}
+
+interface BlogDocument extends Document, BlogDTO {}
+
+const BlogSchema = new mongoose.Schema<BlogDocument>(
   {
     title: { type: String },
     slug: { type: String },
@@ -17,13 +27,28 @@ export const BlogSchema = new mongoose.Schema(
   },
   { versionKey: false, timestamps: true }
 );
-export const BlogModel =
-  mongoose.models.Blogs || mongoose.model("Blogs", BlogSchema);
+
+BlogSchema.pre("save", function (next) {
+  if (!this.isModified("title") && this.slug) {
+    return next();
+  }
+
+  const title = this.get("title") as string;
+  if (title) {
+    this.set("slug", slugify(title, { lower: true, remove: /[*+~.()'"!:@]/g }));
+  }
+  next();
+});
+
+BlogSchema.methods.generateSlug = function () {
+  return this.get("slug") as string;
+};
+
+const BlogModel =
+  mongoose.models.Blogs || mongoose.model<BlogDocument>("Blogs", BlogSchema);
 
 export const GetAllBlogs = () =>
-  BlogModel.find().populate({
-    path: "category",
-  });
+  BlogModel.find().populate({ path: "category" });
 
 export const GetBlogById = (id: string) => BlogModel.findById({ _id: id });
 
@@ -35,14 +60,6 @@ export const UpdateBlog = (id: string, values: Record<string, any>) =>
 
 export const DeleteBlog = (id: string) =>
   BlogModel.findOneAndDelete({ _id: id });
-
-BlogSchema.pre("save", function (next) {
-  const title = this.title;
-  if (title) {
-    this.slug = slugify(title, { lower: true, remove: /[*+~.()'"!:@]/g });
-  }
-  next();
-});
 
 export const BlogValidation = (blog: BlogDTO) => {
   const blogValidationSchema = Joi.object({
