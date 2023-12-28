@@ -11,7 +11,9 @@ interface BlogDTO {
   category?: mongoose.Schema.Types.ObjectId;
 }
 
-interface BlogDocument extends Document, BlogDTO {}
+interface BlogDocument extends Document, BlogDTO {
+  generateSlug: () => string;
+}
 
 const BlogSchema = new mongoose.Schema<BlogDocument>(
   {
@@ -29,7 +31,7 @@ const BlogSchema = new mongoose.Schema<BlogDocument>(
 );
 
 BlogSchema.pre("save", function (next) {
-  if (!this.isModified("title") && this.slug) {
+  if (!this.isModified("title")) {
     return next();
   }
 
@@ -67,7 +69,6 @@ export const BlogValidation = (blog: BlogDTO) => {
     slug: Joi.string(),
     description: Joi.string(),
     image: Joi.string(),
-    viewCount: Joi.number(),
     category: Joi.string().regex(/^[0-9a-fA-F]{24}$/),
   });
   return blogValidationSchema.validate(blog);

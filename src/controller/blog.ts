@@ -78,6 +78,7 @@ export const updateBlog = async (
     const patchData = req.body;
 
     const data = await UpdateBlog(id, patchData);
+    console.log(data);
 
     return res.status(200).json(data);
   } catch (error: any) {
