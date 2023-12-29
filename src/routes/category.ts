@@ -6,13 +6,14 @@ import {
   getCategories,
   updateCategory,
 } from "../controller";
+import { checkAuth } from "../middleware";
 
 const CategoriesRouter = express.Router();
 
 CategoriesRouter.get("/", getCategories);
 CategoriesRouter.get("/:id", getCategoryById);
-CategoriesRouter.post("/", createCategory);
-CategoriesRouter.patch("/:id", updateCategory);
-CategoriesRouter.delete("/:id", deleteCategory);
+CategoriesRouter.post("/", checkAuth, createCategory);
+CategoriesRouter.patch("/:id", checkAuth, updateCategory);
+CategoriesRouter.delete("/:id", checkAuth, deleteCategory);
 
 export { CategoriesRouter };

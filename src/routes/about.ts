@@ -6,6 +6,6 @@ const AboutRouter = express.Router();
 
 AboutRouter.post("/", checkAuth, createAbout);
 AboutRouter.patch("/", checkAuth, updateAbout);
-AboutRouter.get("/", checkAuth, getAbout);
+AboutRouter.get("/", getAbout);
 
 export { AboutRouter };

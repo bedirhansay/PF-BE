@@ -6,13 +6,14 @@ import {
   updateBlog,
   getBlogById,
 } from "../controller/blog";
+import { checkAuth } from "../middleware";
 
 const BlogRouter = express.Router();
 
 BlogRouter.get("/", getBlogs);
 BlogRouter.get("/:id", getBlogById);
-BlogRouter.post("/", createBlog);
-BlogRouter.patch("/:id", updateBlog);
-BlogRouter.delete("/:id", deleteBlog);
+BlogRouter.post("/", checkAuth, createBlog);
+BlogRouter.patch("/:id", checkAuth, updateBlog);
+BlogRouter.delete("/:id", checkAuth, deleteBlog);
 
 export { BlogRouter };

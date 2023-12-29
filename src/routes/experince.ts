@@ -6,13 +6,14 @@ import {
   getExperiences,
   updateExperience,
 } from "../controller";
+import { checkAuth } from "../middleware";
 
 const ExperienceRouter = express.Router();
 
 ExperienceRouter.get("/", getExperiences);
 ExperienceRouter.get("/:id", getExperienceById);
-ExperienceRouter.post("/", createExperience);
-ExperienceRouter.patch("/:id", updateExperience);
-ExperienceRouter.delete("/:id", deleteExperience);
+ExperienceRouter.post("/", checkAuth, createExperience);
+ExperienceRouter.patch("/:id", checkAuth, updateExperience);
+ExperienceRouter.delete("/:id", checkAuth, deleteExperience);
 
 export { ExperienceRouter };
