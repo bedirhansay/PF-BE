@@ -7,7 +7,7 @@ import { mainRouter } from "./src/routes";
 dotenv.config();
 const app = express();
 
-app.use(cors({gitgit}));
+app.use(cors());
 
 app.use(express.json());
 
