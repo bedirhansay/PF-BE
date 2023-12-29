@@ -7,11 +7,7 @@ import { mainRouter } from "./src/routes";
 dotenv.config();
 const app = express();
 
-app.use(
-  cors({
-    origin: ["https://bedirhansaycom.vercel.app", "http://localhost:3000"],
-  })
-);
+app.use(cors({gitgit}));
 
 app.use(express.json());
 
