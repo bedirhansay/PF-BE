@@ -14,7 +14,7 @@ const ProjectSchema = new mongoose.Schema(
     goals: { type: [String] },
     scope: { type: String },
     requirements: { type: [String] },
-    tasks: { type: [String] },
+    tasks: { type: String },
   },
   { timestamps: true, versionKey: false }
 );
