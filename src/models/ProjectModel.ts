@@ -48,7 +48,7 @@ export const ProjectValidation = (project: ProjectDTO) => {
     goals: Joi.array().items(Joi.string()),
     scope: Joi.string(),
     requirements: Joi.array().items(Joi.string()),
-    tasks: Joi.array().items(Joi.string()),
+    tasks: Joi.string(),
   });
 
   return projectValidationSchema.validate(project);
