@@ -7,6 +7,9 @@ import {
   GetAllBlogs,
 } from "../models";
 import { NextFunction, Request, Response } from "express";
+import { BlogPagination } from "../utils/blogPagination";
+
+const ITEMS_PER_PAGE = 9;
 
 export const getBlogs = async (
   req: Request,
@@ -14,10 +17,17 @@ export const getBlogs = async (
   next: NextFunction
 ) => {
   try {
+    const page = parseInt(req.query.page as string) || 1;
     const allBlogs = await GetAllBlogs();
 
     if (allBlogs) {
-      return res.status(200).json(allBlogs);
+      const paginatedBlogs = await BlogPagination({
+        allBlogs,
+        page,
+        itemsPerPage: ITEMS_PER_PAGE,
+      });
+
+      return res.status(200).json(paginatedBlogs);
     } else {
       return res.status(404).send("Henüz hiç blog eklenmedi");
     }
@@ -35,6 +45,16 @@ export const getBlogById = async (
     const BlogId = req.params.id;
 
     const Blog = await GetBlogById(BlogId);
+
+    if (Blog.viewCount) {
+      Blog.viewCount++;
+
+      await UpdateBlog(BlogId, Blog.viewCount);
+    } else {
+      await UpdateBlog(BlogId, {
+        viewCount: 1,
+      });
+    }
 
     if (!Blog) {
       return res.status(404).json("Blog not found");
