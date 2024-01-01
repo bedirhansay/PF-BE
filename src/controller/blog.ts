@@ -105,6 +105,23 @@ export const updateBlog = async (
     return res.status(500).json(error.message);
   }
 };
+export const updateViewCount = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const id = req.params.id;
+
+    if (req.body.viewCount) {
+      const patchData = req.body;
+      const data = await UpdateBlog(id, patchData);
+      return res.status(200).json(data);
+    }
+  } catch (error: any) {
+    return res.status(500).json(error.message);
+  }
+};
 
 export const deleteBlog = async (
   req: Request,
