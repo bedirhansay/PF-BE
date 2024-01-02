@@ -9,10 +9,12 @@ export const BlogPagination = async ({
   page: number;
   itemsPerPage: number;
 }) => {
+  const reversedBlogs = allBlogs.slice().reverse();
+
   const startIndex = (page - 1) * itemsPerPage;
   const endIndex = page * itemsPerPage;
 
-  const paginatedBlogs = allBlogs.slice(startIndex, endIndex);
+  const paginatedBlogs = reversedBlogs.slice(startIndex, endIndex);
 
   const paginObject = {
     totalPages: Math.ceil(allBlogs.length / 9),
